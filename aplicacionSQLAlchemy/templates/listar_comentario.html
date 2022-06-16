@@ -1,0 +1,29 @@
+{% extends "base_template.html" %}
+{% block title %}Comentarios{% endblock %}
+{% block content %}
+ <h1>Comentarios registrados </h1>
+      <hr/>
+      <div class="container">
+      <table>
+         <thead>
+            <tr>
+               <th>Usuario</th>
+               <th>Comentario</th>  
+               <th>Fecha y hora</th>              
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for comentario in comentarios %}
+               <tr>
+                  <td>{{ comentario.usuario.nombre }}</td>
+                  <td>{{ comentario.contenido }}</td>
+				  <td>{{ comentario.fecha }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>	  
+      <br><br>
+      </div>
+{% endblock %}
+

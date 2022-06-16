@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+    <title>Aplicación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+  </head>   
+   <body>     
+	 <h1> Comentarios</h1>
+	 <ul>
+	    <li> <a href = "{{ url_for('nuevo_usuario') }}"> Registrarse como Usuario </a></li><br>
+    	<li> <a href = "{{ url_for('nuevo_comentario') }}"> Comentar</a></li><br>
+		<li> <a href = "{{ url_for('listar_comentarios') }}"> Listar Todos los Comentarios </a></li> <br>
+		<li> <a href = "{{ url_for('listar_comentarios_usuario') }}"> Listar Comentarios </a></li><br>		
+	</ul>
+   </body>
+</html>
+
