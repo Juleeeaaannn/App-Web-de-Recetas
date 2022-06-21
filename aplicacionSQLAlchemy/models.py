@@ -27,4 +27,3 @@ class Ingredientes(db.Model):
     cantidad= db.Column(db.Integer, primary_key=True)
     unidad= db.Column(db.String(20), nullable=False)
     recetaid=db.Column(db.Integer, db.ForeignKey('receta.id'))
-    

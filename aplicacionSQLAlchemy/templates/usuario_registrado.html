@@ -1,0 +1,13 @@
+{% extends "base_template.html" %}
+{% block title %}Usuario Registrado{% endblock %}
+{% block content %}
+ <div class="UsuarioRegistrado">
+  <ul>
+    <li><a href = "{{ url_for('compartir_receta') }}">Compartir receta</a></li>
+    <li><a href = "{{ url_for('consultar_ranking') }}">Consultar ranking</a></li>
+    <li><a href = "{{ url_for('consultar_tiempo') }}">Consultar recetas por tiempo</a></li>
+    <li><a href = "{{ url_for('consultar_ingredientes') }}">Consultar recetas por ingrediente</a></li>
+  </ul>
+
+ </div>
+{% endblock %}

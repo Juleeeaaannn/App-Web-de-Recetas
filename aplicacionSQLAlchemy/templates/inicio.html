@@ -4,14 +4,22 @@
     <title>Aplicación</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
   </head>   
-   <body>     
-	 <h1> Comentarios</h1>
-	 <ul>
-	    <li> <a href = "{{ url_for('nuevo_usuario') }}"> Registrarse como Usuario </a></li><br>
-    	<li> <a href = "{{ url_for('nuevo_comentario') }}"> Comentar</a></li><br>
-		<li> <a href = "{{ url_for('listar_comentarios') }}"> Listar Todos los Comentarios </a></li> <br>
-		<li> <a href = "{{ url_for('listar_comentarios_usuario') }}"> Listar Comentarios </a></li><br>		
-	</ul>
-   </body>
+	{% extends "base_template.html" %}
+	{% block title %}Iniciar sesion{% endblock %}
+	{% block content %}
+		  <h1>INICIAR SESION</h1>
+		  <hr> 
+		  <div class="myDiv">        
+		  <form action = "http://127.0.0.1:5000/usuario" method = "post">  
+			 <label for = "email">Correo Electrónico</label><br>
+			 <input type = "text" name = "email" placeholder = "email" /><br><br>  		 
+			 <label for = "password">Ingrese su contraseña</label><br>
+			 <input type = "password" name = "password" placeholder = "password"/><br>		 
+			 <br>
+			 <input type = "submit" value = "Ingresar" />
+		  </form>
+			<a href = "{{ url_for('nuevo_usuario') }}"> Registrarse</a>
+		</div> 
+	{% endblock %}
 </html>
 
