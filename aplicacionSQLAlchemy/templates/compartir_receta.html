@@ -9,19 +9,26 @@
                   <input type = "text" name = "nombre" placeholder = "nombre" /><br> 		 
             <label for = "tiempo">Tiempo estimado(minutos)</label><br>
                   <input type = "text" name = "tiempo" placeholder = "tiempo"/>
-            
-            
             <label for = "descripcion">Descripcion</label><br>
                   <input type = "text" name = "descripcion" placeholder = "descripcion" /><br>
             </div><hr/>
-            <div class="ingredientes">
-            <label for = "Ingredientes">Ingredientes | Cantidad | Unidad de medida</label><br>
-                  <input type = "text" name = "Ingredientes" placeholder = "Ingredientes" />
-            
-                  <input type = "text" name = "Cantidad" placeholder = "Cantidad" />
-            
+            <input id="userId" name="userId" type="hidden" value="{{usuario.id}}"> 
+
+            <div class="ingrediente">
+            <label for = "ingrediente">Ingredientes | Cantidad | Unidad de medida</label><br>
+                  <input type = "text" name = "ingrediente" placeholder = "ingrediente" />
+                  <input type = "text" name = "cantidad" placeholder = "cantidad" />
                   <input type = "text" name = "medida" placeholder = "medida" /><br>
+                  <input id="receId" name="receId" type="hidden" value="{{receta.id}}">
+            <input type = "button" value = "+"/>
          <input type = "submit" value = "Guardar"/>
+         {% for ingrediente in ingredientes %}
+               <tr>
+                  <td>{{ ingrediente.nombre }}</td>
+                  <td>{{ comentario.cantidad }}</td>
+			<td>{{ comentario.unidad }}</td>
+               </tr>
+            {% endfor %}
             </div>
       </form>	  
 {% endblock %}

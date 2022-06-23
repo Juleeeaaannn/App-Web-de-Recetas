@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template,session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -29,6 +29,7 @@ def usuario():
 					return render_template('error.html', error="La contraseña no es válida")
 	else:
 		return render_template('inicio.html')	
+		
 @app.route('/nuevo_usuario', methods = ['GET','POST'])
 def nuevo_usuario():   
 	if request.method == 'POST':
@@ -41,17 +42,32 @@ def nuevo_usuario():
 			db.session.commit()
 			return render_template('aviso.html', mensaje="El usuario se registró exitosamente")
 	return render_template('nuevo_usuario.html')
+
 @app.route('/compartir_receta', methods = ['GET','POST'])
 def compartir_receta():
-	return render_template('compartir_receta.html')
+	if request.method == 'POST':
+		if not request.form:
+			return render_template('error.html', error="Contenido no ingresado...")
+		else:            
+			nueva_receta= Receta(nombre=request.form['nombre'], tiempo=request.form['tiempo'], descripcion=request.form['descripcion'], cantidadmegusta=0, fecha=datetime.now(), usuario_id =request.form['userId'])    
+			db.session.add(nueva_receta)
+			db.session.commit()
+			nuevo_ingrediente= Ingredientes(ingrediente=request.form['ingrediente'], cantidad=request.form['cantidad'], medida=request.form['medida'], receta_id =request.form['receId'])
+			db.session.add(nuevo_ingrediente)
+			db.session.commit()
+			return render_template('usuario_registrado.html', usuario = request.form['userId']) 
+	return render_template('compartir_receta.html',usuario=request.form['usedId']) 
+
 @app.route('/consultar_ingredientes', methods = ['GET','POST'])
 def consultar_ingredientes():
 	if request.method == 'POST':
 		return render_template('consultar_ingredientes.html')
+
 @app.route('/consultar_ranking', methods = ['GET','POST'])
 def consultar_ranking():
 	if request.method == 'POST':
 		return render_template('consultar_ranking.html')
+
 @app.route('/consultar_tiempo', methods = ['GET','POST'])
 def consultar_tiempo():
 	if request.method == 'POST':
