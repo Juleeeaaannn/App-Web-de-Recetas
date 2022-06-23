@@ -35,27 +35,27 @@ def nuevo_usuario():
 		if not request.form['nombre'] or not request.form['email'] or not request.form['password']:
 			return render_template('error.html', error="Los datos ingresados no son correctos...")
 		else:
-			nuevo_usuario = Usuario(nombre=request.form['nombre'], correo = request.form['email'], clave=generate_password_hash(request.form['password']))       
+			clave=generate_password_hash(request.form['password'])
+			nuevo_usuario = Usuario(nombre=request.form['nombre'], correo = request.form['email'], clave=generate_password_hash(request.form['password']))  
 			db.session.add(nuevo_usuario)
 			db.session.commit()
 			return render_template('aviso.html', mensaje="El usuario se registró exitosamente")
 	return render_template('nuevo_usuario.html')
 @app.route('/compartir_receta', methods = ['GET','POST'])
 def compartir_receta():
-	if request.method == 'POST':
-		print('hola')
+	return render_template('compartir_receta.html')
 @app.route('/consultar_ingredientes', methods = ['GET','POST'])
 def consultar_ingredientes():
 	if request.method == 'POST':
-		print('hola')
+		return render_template('consultar_ingredientes.html')
 @app.route('/consultar_ranking', methods = ['GET','POST'])
 def consultar_ranking():
 	if request.method == 'POST':
-		print('hola')
+		return render_template('consultar_ranking.html')
 @app.route('/consultar_tiempo', methods = ['GET','POST'])
 def consultar_tiempo():
 	if request.method == 'POST':
-		print('hola')    
+		return render_template('consultar_tiempo.html')    
 # @app.route('/ingresar_comentario', methods = ['GET', 'POST'])
 # def ingresar_comentario():
 #     if request.method == 'POST':

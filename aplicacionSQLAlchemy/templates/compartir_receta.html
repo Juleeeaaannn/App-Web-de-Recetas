@@ -1,16 +1,27 @@
 {% extends "base_template.html" %}
-{% block title %}Comentar{% endblock %}
+{% block title %}Receta{% endblock %}
 {% block content %}
-      <h1>Nuevo Comentario</h1>
+      <h1>Nueva Receta</h1>
       <hr/>           
-      <form action = "{{ request.path }}" method = "post" class= "container">  
-         <label for = "email">nombre</label><br>
-         <input type = "text" name = "email" placeholder = "email" /><br> 		 
-         <label for = "password">Ingrese su contraseña</label><br>
-         <input type = "password" name = "password" placeholder = "password"/><br>		 
-        
-		 <br>
-         <input type = "submit" value = "Buscar" />
-	 
+      <form action = "http://127.0.0.1:5000/compartir_receta" method = "post">
+            <div class= "UsuarioRegistrado">
+            <label for = "name">Nombre</label><br>
+                  <input type = "text" name = "nombre" placeholder = "nombre" /><br> 		 
+            <label for = "tiempo">Tiempo estimado(minutos)</label><br>
+                  <input type = "text" name = "tiempo" placeholder = "tiempo"/>
+            
+            
+            <label for = "descripcion">Descripcion</label><br>
+                  <input type = "text" name = "descripcion" placeholder = "descripcion" /><br>
+            </div><hr/>
+            <div class="ingredientes">
+            <label for = "Ingredientes">Ingredientes | Cantidad | Unidad de medida</label><br>
+                  <input type = "text" name = "Ingredientes" placeholder = "Ingredientes" />
+            
+                  <input type = "text" name = "Cantidad" placeholder = "Cantidad" />
+            
+                  <input type = "text" name = "medida" placeholder = "medida" /><br>
+         <input type = "submit" value = "Guardar"/>
+            </div>
       </form>	  
 {% endblock %}

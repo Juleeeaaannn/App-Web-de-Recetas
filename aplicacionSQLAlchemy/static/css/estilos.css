@@ -2,7 +2,7 @@ body {
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #464;
-  background-color: #ffffff;
+  background-color: #6b58a463;
 }
 header {
   background-color: #DFB887;
@@ -66,7 +66,7 @@ th, td {
 	font-weight: bold; 
   margin-bottom: 10em; 
 	margin-left: 10em; 
-	color: #123A42;
+	color: #0f1b36;
 }
 .container textarea { 
 	min-height: 12em; 
@@ -91,27 +91,49 @@ th, td {
   color: #444;
   text-decoration: none;
 }
-.myDiv {
+.myDiv{
   text-align: center;
+}
+
+.myDiv button{
+  
+  width: 220px;
+  margin: 50px auto;
 }
 .myDiv label { 
 	font-weight: bold; 
-	color: #123A42;
+	color: #377ba8;
+  text-align: left;
 }
 .myDiv a {
+
+  text-align: center;
   display: block;
-  color: rgb(0, 30, 255);
+  color: rgb(56, 4, 0);
   padding: 8px 16px;
 }
-.myDiv input { 
+.myDiv input {
+  text-align-last: left;
+  border-radius:5px;
   text-align: center;
+  background-color: #6b58a463;
 }
 .UsuarioRegistrado{
   font-weight: bold; 
   width: 220px;
-  margin: 200px auto;
+  margin: 10px auto;
   stroke-width:150px ;
   text-align: center;
   text-align-last: center;
   
 }
+.UsuarioRegistrado ul { 
+	background-color: #52649086;
+}
+.ingredientes{
+  font-weight: bold; 
+  text-align-last: center;
+  margin: 0px auto;
+  text-align: center;
+}
+
