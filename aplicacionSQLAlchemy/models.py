@@ -20,8 +20,8 @@ class Receta(db.Model):
     fecha=db.Column(db.String(80), nullable=False)
     usuarioid = db.Column(db.Integer, db.ForeignKey('usuario.id'))
 
-class Ingredientes(db.Model):
-    __tablename__= "ingredientes"
+class Ingrediente(db.Model):
+    __tablename__= "ingrediente"
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(80), nullable=False)
     cantidad= db.Column(db.Integer, primary_key=True)

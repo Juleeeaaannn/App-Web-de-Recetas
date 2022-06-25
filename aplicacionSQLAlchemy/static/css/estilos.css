@@ -130,10 +130,42 @@ th, td {
 .UsuarioRegistrado ul { 
 	background-color: #52649086;
 }
-.ingredientes{
+.ingrediente{
   font-weight: bold; 
   text-align-last: center;
   margin: 0px auto;
   text-align: center;
+  color: rgb(56, 4, 0);
+}
+
+
+label.ingre{
+  font-weight: bold; 
+  margin-bottom: 10em; 
+	margin-left: 30em; 
+  color: #1e1438;
+}
+label.canti{
+  margin-bottom: 10em;
+  font-weight: bold;  
+	margin-left: 5.5em; 
+  color: #1e1438;
+}
+label.uni{
+  font-weight: bold; 
+  margin-left: 5em; 
+  color: #1e1438;
+}
+.MostrarIngre{
+  width: 500px;
+  margin: 20px auto;
+  text-align: center;
+  text-align-last: center;
+  background-color: #6b58a463;
+  color: #1e1438;
+}
+.MostrarIngre h3{
+  font-weight:bold;
+  color: rgb(56, 4, 0);
 }
 

@@ -1,0 +1,36 @@
+{% extends "base_template.html" %}
+{% block title %}ingredientes{% endblock %}
+{% block content %}
+<label class="ingre">Ingredientes</label>
+<label class="canti">Cantidad</label>
+<label class="uni">Unidad de medida</label><br>
+<div class="ingrediente">
+   
+    <form action = "http://127.0.0.1:5000/ingredientes" method = "post">
+    
+          <input type = "text" name = "ingrediente" placeholder = "ingrediente" />
+          <input type = "text" name = "cantidad" placeholder = "cantidad" />
+          <input type = "text" name = "medida" placeholder = "medida" /><br>
+          <input id="recetaid" name="recetaid" type="hidden" value="{{receta.id}}"/>
+        <input type = "submit" value = "+"/>
+        <input type = "submit" value = "Terminar"/>
+    </div>
+        <div class="MostrarIngre">
+            <h3>INGREDIENTES AGREGADOS</h3>
+            <hr>
+        {%if user is not none: %}
+            {% for ingre in user %}
+        <tr>
+            <a>{{ ingre.nombre }}</a>
+            <a>{{ ingre.cantidad }}</a>
+            <a>{{ ingre.unidad }}</a><br>
+            <hr>
+        </tr>
+            {% endfor %}
+        {%endif%}
+            <a></a>
+        </div>
+    </form>
+
+{% endblock %}
+
