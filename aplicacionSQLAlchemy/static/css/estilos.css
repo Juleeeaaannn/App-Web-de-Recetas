@@ -158,7 +158,7 @@ label.uni{
 }
 .MostrarIngre{
   width: 500px;
-  margin: 20px auto;
+  margin: 10px auto;
   text-align: center;
   text-align-last: center;
   background-color: #6b58a463;
@@ -167,5 +167,39 @@ label.uni{
 .MostrarIngre h3{
   font-weight:bold;
   color: rgb(56, 4, 0);
+  margin: 10px auto;
 }
+.tabla .buttom{
+  border: none;
+  text-align: center;
+  empty-cells:show;
+  margin: 0px auto;
+  table-layout:fixed; width: 500px;
+  border-collapse: separate; 
+  color: rgb(56, 4, 0);
+  border-inline-color: #6b58a463;
+}
+.tabla .top{
+  
+  text-align: center;
+  table-layout:fixed;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  color: rgb(56, 4, 0);
+  
+}
+.tabla h3{
+  font-weight:bold;
+  color: rgb(56, 4, 0);
+  width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+.menuref{
+  
+  text-align: center;
+}
+
 

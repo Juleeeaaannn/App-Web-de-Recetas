@@ -1,5 +1,30 @@
 {% extends "base_template.html" %}
-{% block title %}Comentario de Usuario{% endblock %}
+{% block title %}Ranking{% endblock %}
 {% block content %}
-	  
+<div class="tabla">
+    <h3>RANKING DE RECETAS</h3>
+    <hr>
+    <table class="top">
+    <tr>
+        <th colspan="1" scope="col">Nombre</th>
+        <th colspan="1" scope="col">usuario</th>
+        <th colspan="1" scope="col">me gustas</th>
+      </tr>
+    </table>
+    
+    {%if receta is not none: %} <!-- SI LAS RECETAS(LISTA DE RECETAS) NO VIENE VACIO ENTRA AL IF-->
+    {%for i in range(5)%}
+    
+    <table class="buttom">
+<tr>
+    <td>{{ receta[i].nombre }}</td>
+    <td>{{ receta[i].tiempo }}</td>
+    <td>{{ receta[i].cantidadmegusta }}</td>
+</tr>
+</table>
+    {% endfor %}
+    <div class="menuref">
+    <br><br><a href = "{{ url_for('menu') }}" >MENU </a><br><br>
+</div>
+{%endif%}
 {% endblock %}

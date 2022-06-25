@@ -34,7 +34,10 @@ def usuario():
 				else:
 					return render_template('error.html', error="La contraseña no es válida")
 	else:
-		return render_template('inicio.html')	
+		return render_template('inicio.html')
+@app.route('/menu')
+def menu():
+	return render_template('usuario_registrado.html')
 @app.route('/nuevo_usuario', methods = ['GET','POST'])
 def nuevo_usuario():   
 	if request.method == 'POST':
@@ -73,16 +76,17 @@ def ingredientes():
 			return render_template('usuario_registrado.html')#sino trae un nombre de ingrediente te envia devuelta al MENU(USUARIO_REGISTRADO) 
 	else:
 		return render_template('usuario_registrado.html') 
-@app.route('/consultar_ingredientes', methods = ['GET','POST'])
+
 ##########################################
+@app.route('/consultar_ranking')
+def consultar_ranking():
+	recetas=Receta.query.all()
+	return render_template('consultar_ranking.html',receta=recetas)
+##########################################
+@app.route('/consultar_ingredientes', methods = ['GET','POST'])
 def consultar_ingredientes():
 	if request.method == 'POST':
 		return render_template('consultar_ingredientes.html')
-
-@app.route('/consultar_ranking', methods = ['GET','POST'])
-def consultar_ranking():
-	if request.method == 'POST':
-		return render_template('consultar_ranking.html')
 
 @app.route('/consultar_tiempo', methods = ['GET','POST'])
 def consultar_tiempo():

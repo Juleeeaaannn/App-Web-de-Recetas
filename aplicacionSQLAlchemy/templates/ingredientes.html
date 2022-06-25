@@ -18,7 +18,7 @@
         <div class="MostrarIngre">
             <h3>INGREDIENTES AGREGADOS</h3>
             <hr>
-        {%if user is not none: %}
+        {%if user is not none: %} <!-- SI EL USUARIO(LISTA DE INGREDIENTES DE LA RECETA) NO VIENE VACIO ENTRA AL IF-->
             {% for ingre in user %}
         <tr>
             <a>{{ ingre.nombre }}</a>
