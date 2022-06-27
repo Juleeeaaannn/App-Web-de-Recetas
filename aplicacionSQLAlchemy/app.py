@@ -3,6 +3,7 @@ from flask import Flask, request, render_template, session
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+import hashlib
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
@@ -23,13 +24,12 @@ def usuario():
 			return render_template('error.html', error="Por favor ingrese los datos requeridos")
 		else:
 			usuario_actual= Usuario.query.filter_by(correo= request.form['email']).first()
-			session['id'] = usuario_actual.id
 			session['user'] = usuario_actual
 			if usuario_actual is None:
 				return render_template('error.html', error="El correo no está registrado")
 			else:
-				verificacion = check_password_hash(usuario_actual.clave, request.form['password'])
-				if (verificacion):                    
+				clave=hashlib.md5(bytes( request.form['password'], encoding='UTF-8'))
+				if (usuario_actual.clave == clave.hexdigest()):                    
 					return render_template('usuario_registrado.html')
 				else:
 					return render_template('error.html', error="La contraseña no es válida")
@@ -44,8 +44,8 @@ def nuevo_usuario():
 		if not request.form['nombre'] or not request.form['email'] or not request.form['password']:
 			return render_template('error.html', error="Los datos ingresados no son correctos...")
 		else:
-			clave=generate_password_hash(request.form['password'])
-			nuevo_usuario = Usuario(nombre=request.form['nombre'], correo = request.form['email'], clave=generate_password_hash(request.form['password']))  
+			clave=hashlib.md5(bytes( request.form['password'], encoding='UTF-8'))
+			nuevo_usuario = Usuario(nombre=request.form['nombre'], correo = request.form['email'], clave=clave.hexdigest())
 			db.session.add(nuevo_usuario)
 			db.session.commit()
 			return render_template('aviso.html', mensaje="El usuario se registró exitosamente")
@@ -56,13 +56,16 @@ def compartir_receta():
 	if request.method == 'POST':
 		if not request.form:
 			return render_template('error.html', error="Contenido no ingresado...") #SI NO TRAE NADA DA ERROR
-		else:            
-			nueva_receta= Receta(nombre=request.form['nombre'], tiempo=request.form['tiempo'], elaboracion=request.form['descripcion'], cantidadmegusta=0, fecha=datetime.now(), usuarioid = session['id'])    #SE CREA UN OBJETO DE EL MODELO RECETAS
+		else:
+			user=session['user']            
+			nueva_receta= Receta(nombre=request.form['nombre'], tiempo=request.form['tiempo'], elaboracion=request.form['descripcion'], cantidadmegusta=0, fecha=datetime.now(), usuarioid = user.id)    #SE CREA UN OBJETO DE EL MODELO RECETAS
 			db.session.add(nueva_receta)
 			db.session.commit()#SE GUARDA EN LA BASE DE DATOS EL OBJETO CREADO
 			session['receta']= nueva_receta #leemos la recetaaa
 			return render_template('ingredientes.html',receta=session['receta'], user=Ingrediente.query.filter_by(recetaid=nueva_receta.id ).all()) #se envia la receta y la lista de ingredientes desde la base de datos con el id de la receta
-	return render_template('compartir_receta.html',userId = session['id'])#SE ENVIA EL ID DE USUARIO PARA USARLOS EN LA CREACION DE LA RECETA
+	else:
+		user=session['user']
+		return render_template('compartir_receta.html',userId = user.id)#SE ENVIA EL ID DE USUARIO PARA USARLOS EN LA CREACION DE LA RECETA
 @app.route('/ingredientes', methods = ['GET','POST'])
 def ingredientes():
 	if request.method == 'POST':
@@ -81,7 +84,8 @@ def ingredientes():
 @app.route('/consultar_ranking')
 def consultar_ranking():
 	recetas=Receta.query.all()
-	return render_template('consultar_ranking.html',receta=recetas)
+	recetas=Receta.query.order_by(Receta.cantidadmegusta)
+	return render_template('consultar_ranking.html',receta=recetas,Receta=Receta)
 ##########################################
 @app.route('/consultar_ingredientes', methods = ['GET','POST'])
 def consultar_ingredientes():
