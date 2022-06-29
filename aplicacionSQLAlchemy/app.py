@@ -90,12 +90,6 @@ def consultar_ranking():
 	return render_template('consultar_ranking.html',receta=recetas,Receta=Receta)
 
 ##########################################
-@app.route('/consultar_ingredientes', methods = ['GET','POST'])
-def consultar_ingredientes():
-	if request.method == 'POST':
-		return render_template('consultar_ingredientes.html')
-
-##########################################
 @app.route('/consultar_tiempo', methods = ['GET','POST'])
 def consultar_tiempo():
 	if request.method == 'POST':
@@ -116,6 +110,13 @@ def megusta():
 		db.session.query(Receta).filter_by(id=request.form['recetaid']).update({'cantidadmegusta':Receta.cantidadmegusta+1})
 		db.session.commit()
 		return render_template('usuario_registrado.html')
+#####################################
+@app.route('/consultar_ingredientes', methods = ['GET','POST'])
+def consultar_ingredientes():
+	if request.method == 'POST':
+		return render_template('consultar_ingredientes.html', ingrediente=request.form['ingrediente'], ingredientes=Ingrediente.query.all(), recetas=Receta.query.all())
+	else:
+		return render_template('consultar_ingredientes.html', Ingrediente=None)
 if __name__ == '__main__':
 	db.create_all()
 	app.run(debug = True)	

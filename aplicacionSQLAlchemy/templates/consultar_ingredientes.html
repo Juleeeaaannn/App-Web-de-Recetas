@@ -1,6 +1,28 @@
 {% extends "base_template.html" %}
-{% block title %}Comentarios{% endblock %}
+{% block title %}Consultar ingredientes{% endblock %}
 {% block content %}
-
+<form action = "http://127.0.0.1:5000/consultar_ingredientes" method = "post" class="myDiv">
+    <label for = "ingrediente">Ingrediente</label><br>
+    <input type = "text" name = "ingrediente" placeholder = "ingrediente" /><br>
+    <input type = "submit" value = "Buscar" />
+</form>
+<hr>
+<div class="tabla">
+    {%if ingrediente is not none: %} <!-- SI EL INGREDIENTE NO VIENE VACIO ENTRA AL IF-->
+    <h3>RECETAS POR INGREDIENTE</h3>
+        {%for ingre in ingredientes%}
+            {% if ingrediente == ingre.nombre or ingrediente == ingre.nombre[:ingre.nombre.find(' ')] or ingrediente == ingre.nombre[ingre.nombre.find(' ')+1:] %}  <!--  -->
+            {%for rece in recetas%}
+                {%if rece.id == ingre.recetaid%}
+                    <table class="buttom">
+                    <ul>
+                        <li><a>{{rece.nombre}}</a></li>
+                    </ul>
+                    </table>
+                {% endif %}
+            {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}
 
