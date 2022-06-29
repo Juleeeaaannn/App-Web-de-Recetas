@@ -11,18 +11,24 @@
     {%if ingrediente is not none: %} <!-- SI EL INGREDIENTE NO VIENE VACIO ENTRA AL IF-->
     <h3>RECETAS POR INGREDIENTE</h3>
         {%for ingre in ingredientes%}
-            {% if ingrediente == ingre.nombre or ingrediente == ingre.nombre[:ingre.nombre.find(' ')] or ingrediente == ingre.nombre[ingre.nombre.find(' ')+1:] %}  <!--  -->
+            {% if ingrediente.upper() == ingre.nombre.upper() or ingrediente.upper() == ingre.nombre[:ingre.nombre.find(' ')].upper() or ingrediente.upper() == ingre.nombre[ingre.nombre.find(' ')+1:].upper() %}  <!--  -->
             {%for rece in recetas%}
-                {%if rece.id == ingre.recetaid%}
+                {%if rece.id == ingre.recetaid:%}
                     <table class="buttom">
-                    <ul>
-                        <li><a>{{rece.nombre}}</a></li>
-                    </ul>
+                    <tr>
+                        <td>{{rece.nombre}}</td>
+                        <form action = "http://127.0.0.1:5000/ver_receta" method = "post">
+                            <input name = "ide" value="{{rece.id}}" type="hidden" />
+                        <td><input type="submit" value="ver"></td>
+                        </form>>
+                    </tr>
                     </table>
                 {% endif %}
             {% endfor %}
             {% endif %}
         {% endfor %}
     {% endif %}
+    
+
 {% endblock %}
 

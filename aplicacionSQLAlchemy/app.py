@@ -87,7 +87,7 @@ def ingredientes():
 @app.route('/consultar_ranking')
 def consultar_ranking():
 	recetas=Receta.query.order_by(desc(Receta.cantidadmegusta)).limit(5).all() #Ordena por cantidad de me gusta y trae solo los primeros 5
-	return render_template('consultar_ranking.html',receta=recetas,Receta=Receta)
+	return render_template('consultar_ranking.html',receta=recetas,Receta=Receta,usuarios=Usuario.query.all())
 
 ##########################################
 @app.route('/consultar_tiempo', methods = ['GET','POST'])
@@ -102,8 +102,9 @@ def ver_receta():
 		recetaid= request.form['ide']
 		receta=Receta.query.filter_by(id=recetaid).first()
 		listaingredietes=Ingrediente.query.filter_by(recetaid=recetaid).all()
+		usuarios=Usuario.query.all()
 		user=session['user']
-		return render_template('ver_receta.html',receta=receta,ingredientes=listaingredietes,user=user.id)
+		return render_template('ver_receta.html',receta=receta,ingredientes=listaingredietes,user=user,usuarios=usuarios)
 @app.route('/megusta', methods = ['GET','POST'])
 def megusta():
 	if request.method == 'POST':

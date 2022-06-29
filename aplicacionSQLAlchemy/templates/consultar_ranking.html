@@ -18,8 +18,12 @@
     <table class="buttom">
 <tr>
     <td>{{ rece.nombre }}</td>
-    {% set user=Receta.query.filter_by(usuarioid=rece.usuarioid).first() %}
-    <td>{{user.nombre}}</td>
+    {% for usuario in usuarios%}
+        {%if usuario.id==rece.usuarioid:%}
+    <td>   {{usuario.nombre}}</td>
+            {{ break }}
+    {%endif%}
+{% endfor %}
     <td>{{ rece.cantidadmegusta }}</td>
 </tr>
 </table>

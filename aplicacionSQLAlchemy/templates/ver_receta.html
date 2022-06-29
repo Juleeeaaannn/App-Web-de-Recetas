@@ -2,7 +2,13 @@
 {% block title %}Receta{% endblock %}
 {% block content %}
 <div class="verReceta">
-    <h1>{{receta.nombre}}</h1>
+
+    {% for usuario in usuarios%}
+        {%if usuario.id==receta.usuarioid:%}
+        <h1>{{receta.nombre}} por {{usuario.nombre}}</h1>
+            {{ break }}
+        {%endif%}
+    {% endfor %}
     <hr>
 <ul>
     {%for ingre in ingredientes%}
@@ -12,7 +18,7 @@
     <li>{{receta.elaboracion}}</li>
 </ul>
 <hr>
-{%if user != receta.usuarioid :%}
+{%if user.id != receta.usuarioid :%}
 <form action = "http://127.0.0.1:5000/megusta" method = "post">
     <input type = "hidden" name = "recetaid" value="{{receta.id}}"/><br>
     <input type = "submit" value = "Me gusta" />
