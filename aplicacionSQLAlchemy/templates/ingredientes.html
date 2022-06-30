@@ -1,21 +1,30 @@
 {% extends "base_template.html" %}
 {% block title %}ingredientes{% endblock %}
 {% block content %}
-<label class="ingre">Ingredientes</label>
-<label class="canti">Cantidad</label>
-<label class="uni">Unidad de medida</label><br>
-<div class="ingrediente">
-   
-    <form action = "http://127.0.0.1:5000/ingredientes" method = "post">
+    <div class="ingrediente">
+        <table style="border: inset 0pt" >
+        <tr style="border: inset 0pt">
+            <td style="border: inset 0pt"><label>Ingredientes </label></td>
+            <td style="border: inset 0pt"><label>Cantidad</label></td>
+            <td style="border: inset 0pt"><label>Unidad de medida</label><br></td>
+            </tr>
     
-          <input type = "text" name = "ingrediente" placeholder = "ingrediente" />
-          <input type = "text" name = "cantidad" placeholder = "cantidad" />
-          <input type = "text" name = "medida" placeholder = "medida" /><br>
-          <input id="recetaid" name="recetaid" type="hidden" value="{{receta.id}}"/>
-        <input type = "submit" value = "+" class="btn btn-outline-warning"/>
-        <input type = "submit" value = "Terminar" class="btn btn-outline-warning"/>
+        <form action = "http://127.0.0.1:5000/ingredientes" method = "post">
+            <tr style="border: inset 0pt">
+                <td style="border: inset 0pt"><input type = "text" name = "ingrediente" placeholder = "ingrediente" /></td>
+                <td style="border: inset 0pt"><input type = "text" name = "cantidad" placeholder = "cantidad" /></td>
+                <td style="border: inset 0pt">    <input type = "text" name = "medida" placeholder = "medida" /><br></td>
+            </tr>
+        </table>
+                <input id="recetaid" name="recetaid" type="hidden" value="{{receta.id}}"/>
+                <input type = "submit" value = "+" class="btn btn-ingredientes"/>
+                <input type = "submit" value = "Terminar" class="btn btn-ingredientes"/>
+            
+        </form>
+        
     </div>
-        <div class="MostrarIngre">
+
+    <div class="MostrarIngre">
             <h3>INGREDIENTES AGREGADOS</h3>
             <hr>
         {%if user is not none: %} <!-- SI EL USUARIO(LISTA DE INGREDIENTES DE LA RECETA) NO VIENE VACIO ENTRA AL IF-->
@@ -28,9 +37,6 @@
         </tr>
             {% endfor %}
         {%endif%}
-            <a></a>
-        </div>
-    </form>
-
+    </div>
 {% endblock %}
 

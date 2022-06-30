@@ -43,7 +43,7 @@ def menu():
 def nuevo_usuario():   
 	if request.method == 'POST':
 		if not request.form['nombre'] or not request.form['email'] or not request.form['password']:
-			return render_template('error.html', error="Los datos ingresados no son correctos...")
+			return render_template('error.html', error="¡Los datos ingresados no son correctos!")
 		else:
 			clave=hashlib.md5(bytes( request.form['password'], encoding='UTF-8'))
 			nuevo_usuario = Usuario(nombre=request.form['nombre'], correo = request.form['email'], clave=clave.hexdigest())

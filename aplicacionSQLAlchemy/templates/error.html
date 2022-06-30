@@ -1,12 +1,8 @@
 {% extends "base_template.html" %}
 {% block title %}Error{% endblock %}
 {% block content %}
-<h1> {{ error }} </h1>
+<div class="inicio-button">
+     <h2> {{ error }} </h2>
+</div>
 {% endblock %}
-{% for ingrediente in ingredientes %}
-<tr>
-     <a>{{ ingrediente.nombre }}</a>
-     <a>{{ comentario.cantidad }}</a>
-     <a>{{ comentario.unidad }}</a>
-</tr>
-{% endfor %}
+
