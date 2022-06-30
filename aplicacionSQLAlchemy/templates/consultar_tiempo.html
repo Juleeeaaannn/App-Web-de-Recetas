@@ -1,43 +1,41 @@
 {% extends "base_template.html" %}
 {% block title %}Receta por tiempo{% endblock %}
 {% block content %}
-
+<div class="consultar-tiempo">
     <form action = "http://127.0.0.1:5000/consultar_tiempo" method = "post" class = "myDiv">
-        <label for = "tiempo">Tiempo</label><br>
+        <h3 for = "tiempo">RECETAS POR TIEMPO</h3><br>
         <input type = "text" name = "tiempo_ingresado" placeholder = "tiempo" /><br>
-
-        <input type = "submit" value = "Buscar" />
+        <input type = "submit" value = "Buscar" class="btn btn-tiempo"/>
     </form>
-    <hr>
-<div class="tabla">
-    <h3>RECETAS POR TIEMPO</h3>
-    <table class="top">
-    <tr>
-        <th colspan="1" scope="col">Receta</th>
-        <th colspan="1" scope="col">Tiempo</th>
-        <th colspan="1"scope="col">Ver receta</th>
-      </tr>
-    </table>
-    
-    {%if receta is not none: %} <!-- SI LAS RECETAS(LISTA DE RECETAS) NO VIENE VACIO ENTRA AL IF-->
-    {%for rece in receta%}
-    {% if tiempo >= rece.tiempo: %}
-    <table class="buttom">
-<tr>
-    <td>{{ rece.nombre }}</td>
-    <td>{{ rece.tiempo }}</td>
-    <form action = "http://127.0.0.1:5000/ver_receta" method = "post">
-    <input name = "ide" value="{{rece.id}}" type="hidden" />
-    <td><input type="submit" value="ver"></td>
-</form>
-</tr>
-</table>
-    {%endif%}
-    {% endfor %}
-    <div class="menuref">
-    <br><br><a href = "{{ url_for('menu') }}" >MENU </a><br><br>
+    <div class="tabla">
+        <table class="top">
+            <tr>
+                <th colspan="1" scope="col">Receta</th>
+                <th colspan="1" scope="col">Tiempo</th>
+                <th colspan="1"scope="col">Ver receta</th>
+            </tr>
+        </table>
+        {%if receta is not none: %} <!-- SI LAS RECETAS(LISTA DE RECETAS) NO VIENE VACIO ENTRA AL IF-->
+            {%for rece in receta%}
+                {% if tiempo|int >= rece.tiempo|int: %}
+                <table class="buttom">
+                    <tr>
+                        <td>{{ rece.nombre }}</td>
+                        <td>{{ rece.tiempo }}</td>
+                        <form action = "http://127.0.0.1:5000/ver_receta" method = "post">
+                            <input name = "ide" value="{{rece.id}}" type="hidden" />
+                            <td><input type="submit" value="ver"></td>
+                        </form>
+                    </tr>
+                </table>
+                {%endif%}
+            {% endfor %}
+        {%endif%}
+        <div class="menuref">
+        <br><br><a href = "{{ url_for('menu') }}" >MENU </a><br><br>
+        </div>
+    </div>
 </div>
-{%endif%}
 {% endblock %}
 
 

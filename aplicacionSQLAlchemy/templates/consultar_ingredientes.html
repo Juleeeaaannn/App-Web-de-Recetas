@@ -1,34 +1,36 @@
 {% extends "base_template.html" %}
-{% block title %}Consultar ingredientes{% endblock %}
+{% block title %}Buscar por ingrediente{% endblock %}
 {% block content %}
-<form action = "http://127.0.0.1:5000/consultar_ingredientes" method = "post" class="myDiv">
-    <label for = "ingrediente">Ingrediente</label><br>
-    <input type = "text" name = "ingrediente" placeholder = "ingrediente" /><br>
-    <input type = "submit" value = "Buscar" />
-</form>
-<hr>
-<div class="tabla">
-    {%if ingrediente is not none: %} <!-- SI EL INGREDIENTE NO VIENE VACIO ENTRA AL IF-->
+<div class="consultar-tiempo">
     <h3>RECETAS POR INGREDIENTE</h3>
-        {%for ingre in ingredientes%}
-            {% if ingrediente.upper() == ingre.nombre.upper() or ingrediente.upper() == ingre.nombre[:ingre.nombre.find(' ')].upper() or ingrediente.upper() == ingre.nombre[ingre.nombre.find(' ')+1:].upper() %}  <!--  -->
-            {%for rece in recetas%}
-                {%if rece.id == ingre.recetaid:%}
-                    <table class="buttom">
-                    <tr>
-                        <td>{{rece.nombre}}</td>
-                        <form action = "http://127.0.0.1:5000/ver_receta" method = "post">
-                            <input name = "ide" value="{{rece.id}}" type="hidden" />
-                        <td><input type="submit" value="ver"></td>
-                        </form>>
-                    </tr>
-                    </table>
+    <form action = "http://127.0.0.1:5000/consultar_ingredientes" method = "post" class="myDiv">
+        <input type = "text" name = "ingrediente" placeholder = "ingrediente" /><br>
+        <input type = "submit" value = "Buscar" class="btn btn-tiempo"/>
+    </form>
+    <hr>
+    <div class="tabla">
+        {%if ingrediente is not none: %} <!-- SI EL INGREDIENTE NO VIENE VACIO ENTRA AL IF-->
+            {%for ingre in ingredientes%}
+                {% if ingrediente.upper() == ingre.nombre.upper() or ingrediente.upper() == ingre.nombre[:ingre.nombre.find(' ')].upper() or ingrediente.upper() == ingre.nombre[ingre.nombre.find(' ')+1:].upper() %}  <!--  -->
+                    {%for rece in recetas%}
+                        {%if rece.id == ingre.recetaid:%}
+                            <table class="buttom">
+                            <tr>
+                                <td>{{rece.nombre}}</td>
+                                <form action = "http://127.0.0.1:5000/ver_receta" method = "post">
+                                    <input name = "ide" value="{{rece.id}}" type="hidden" />
+                                    <td><input type="submit" value="ver receta"></td>
+                                </form>
+                            </tr>
+                            </table>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
             {% endfor %}
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-    
-
+        {% endif %}
+    <div class="menuref">
+        <br><br><a href = "{{ url_for('menu') }}" >MENU </a><br><br>
+    </div>
+</div>
 {% endblock %}
 

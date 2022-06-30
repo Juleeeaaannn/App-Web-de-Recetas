@@ -56,8 +56,8 @@ def nuevo_usuario():
 @app.route('/compartir_receta', methods = ['GET','POST'])
 def compartir_receta():
 	if request.method == 'POST':
-		if not request.form:
-			return render_template('error.html', error="Contenido no ingresado...") #SI NO TRAE NADA DA ERROR
+		if not request.form['nombre'] or not request.form['tiempo'] or not request.form['descripcion']:
+			return render_template('error.html', error="¡Por favor ingrese todos los datos requeridos!")
 		else:
 			user=session['user']            
 			nueva_receta= Receta(nombre=request.form['nombre'], tiempo=request.form['tiempo'], elaboracion=request.form['descripcion'], cantidadmegusta=0, fecha=datetime.now(), usuarioid = user.id)    #SE CREA UN OBJETO DE EL MODELO RECETAS
@@ -93,7 +93,10 @@ def consultar_ranking():
 @app.route('/consultar_tiempo', methods = ['GET','POST'])
 def consultar_tiempo():
 	if request.method == 'POST':
-		return render_template('consultar_tiempo.html', receta = Receta.query.all(), tiempo = int(request.form['tiempo_ingresado']))    
+		if not request.form['tiempo_ingresado']:
+			return render_template('error.html', error="¡Por favor ingrese todos los datos requeridos!")
+		else:
+			return render_template('consultar_tiempo.html', receta = Receta.query.all(), tiempo = int(request.form['tiempo_ingresado']))    
 	else:
 		return render_template('consultar_tiempo.html', receta = None) 
 @app.route('/ver_receta', methods = ['GET','POST'])
@@ -115,7 +118,10 @@ def megusta():
 @app.route('/consultar_ingredientes', methods = ['GET','POST'])
 def consultar_ingredientes():
 	if request.method == 'POST':
-		return render_template('consultar_ingredientes.html', ingrediente=request.form['ingrediente'], ingredientes=Ingrediente.query.all(), recetas=Receta.query.all())
+		if not request.form['ingrediente']:
+			return render_template('error.html', error="¡Por favor ingrese todos los datos requeridos!")
+		else:
+			return render_template('consultar_ingredientes.html', ingrediente=request.form['ingrediente'], ingredientes=Ingrediente.query.all(), recetas=Receta.query.all())
 	else:
 		return render_template('consultar_ingredientes.html', Ingrediente=None)
 if __name__ == '__main__':

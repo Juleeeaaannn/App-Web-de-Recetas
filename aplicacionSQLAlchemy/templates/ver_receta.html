@@ -1,28 +1,29 @@
 {% extends "base_template.html" %}
 {% block title %}Receta{% endblock %}
 {% block content %}
-<div class="verReceta">
-
+<div class="ver-receta">
     {% for usuario in usuarios%}
         {%if usuario.id==receta.usuarioid:%}
-        <h1>{{receta.nombre}} por {{usuario.nombre}}</h1>
+            <h1>{{receta.nombre}}<br>por{{usuario.nombre}}</h1>
             {{ break }}
         {%endif%}
     {% endfor %}
     <hr>
-<ul>
     {%for ingre in ingredientes%}
-    <li>{{ingre.nombre}}</li>
+        <a class="top">➮{{ingre.nombre}}, {{ingre.cantidad}} {{ingre.unidad}}</a><br>
     {%endfor%}
     <hr>
-    <li>{{receta.elaboracion}}</li>
-</ul>
-<hr>
-{%if user.id != receta.usuarioid :%}
-<form action = "http://127.0.0.1:5000/megusta" method = "post">
-    <input type = "hidden" name = "recetaid" value="{{receta.id}}"/><br>
-    <input type = "submit" value = "Me gusta" />
-</form>
+    <a>PASOS DE ELABORACIÓN:</a><br>
+    <a class="buttom">{{receta.elaboracion}}</a>
+    {%if user.id != receta.usuarioid :%}
+        <form action = "http://127.0.0.1:5000/megusta" method = "post">
+            <input type = "hidden" name = "recetaid" value="{{receta.id}}"/><br>
+            <input type = "submit" value = "❤" class="btn-megusta"/>
+        </form>
+    {%endif%}
+    <p></p>
+    <div class="menuref">
+        <br><br><a href = "{{ url_for('menu') }}" >MENU </a><br><br>
+    </div>
 </div>
-{%endif%}
 {% endblock %}

@@ -4,7 +4,6 @@
                 
       <form action = "http://127.0.0.1:5000/compartir_receta" method = "post" class="compartir_receta">
             <h1>Nueva Receta</h1>
-      <hr/> 
             <label for = "name">Nombre</label><br>
                   <input type = "text" name = "nombre" placeholder = "nombre" /><br> 		 
             <label for = "tiempo">Tiempo estimado(minutos)</label><br>
@@ -14,4 +13,7 @@
                   <input name='boton' type = "submit" value = "Ingresar ingredientes" class="btn btn-consultareceta"/>
  
       </form>	  
+      <div class="menuref">
+            <br><br><a href = "{{ url_for('menu') }}" >MENU </a><br><br>
+      </div>
 {% endblock %}

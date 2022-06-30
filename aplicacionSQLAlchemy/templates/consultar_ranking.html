@@ -1,14 +1,16 @@
 {% extends "base_template.html" %}
 {% block title %}Ranking{% endblock %}
 {% block content %}
-<div class="tabla">
+<div class="consultar-ranking">
     <h3>RANKING DE RECETAS</h3>
     <hr>
+<div class="tabla">
+    
     <table class="top">
     <tr>
         <th colspan="1" scope="col">Nombre</th>
-        <th colspan="1" scope="col">usuario</th>
-        <th colspan="1" scope="col">me gustas</th>
+        <th colspan="1" scope="col">Usuario</th>
+        <th colspan="1" scope="col">Me gustas</th>
       </tr>
     </table>
     
@@ -16,20 +18,21 @@
     {%for rece in receta%}
     
     <table class="buttom">
-<tr>
-    <td>{{ rece.nombre }}</td>
-    {% for usuario in usuarios%}
-        {%if usuario.id==rece.usuarioid:%}
-    <td>   {{usuario.nombre}}</td>
-            {{ break }}
-    {%endif%}
-{% endfor %}
-    <td>{{ rece.cantidadmegusta }}</td>
-</tr>
-</table>
-    {% endfor %}
-    <div class="menuref">
-    <br><br><a href = "{{ url_for('menu') }}" >MENU </a><br><br>
+    <tr>
+        <td>{{ rece.nombre }}</td>
+        {% for usuario in usuarios%}
+            {%if usuario.id==rece.usuarioid:%}
+        <td>   {{usuario.nombre}}</td>
+                {{ break }}
+            {%endif%}
+        {% endfor %}
+        <td>{{ rece.cantidadmegusta }}</td>
+    </tr>
+    </table>
+        {% endfor %}
+        <div class="menuref">
+        <br><br><a href = "{{ url_for('menu') }}" >MENU </a><br><br>
+    </div>
 </div>
 {%endif%}
 {% endblock %}

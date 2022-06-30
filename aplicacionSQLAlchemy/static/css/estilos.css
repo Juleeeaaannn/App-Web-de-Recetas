@@ -26,7 +26,7 @@ header {
 	font-family: serif;
   font-size: 40px;
 	text-align: center;
-	color: #000000; 
+	color: #420909; 
 }
 .inicio-button input{
   border-radius: 4px;
@@ -67,26 +67,54 @@ header {
 }
 .btn-ingredientes{
   color: rgb(253, 231, 231);
-  background-color: #08358898;
+  background-color: #88080898;
   font-size: 20px;
-
+  margin: 15px 15px;
+  border-radius: 10%;
 }
+.btn-tiempo{
+  color: rgb(253, 231, 231);
+  background-color: #420b0b;
+  font-size: 20px;
+  margin: 15px 15px;
+}
+.btn-megusta{
+  background-color: #420b0b;
+  border-radius: 12px;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  width: 100px;
+  cursor: pointer;
+}
+
 /* MENUUUUUU*/
 .UsuarioRegistrado{
   font-weight: bold;
   text-align: center;
   text-align-last: center;
-  font-size: 40px;
+  font-size: 50px;
 }
 .UsuarioRegistrado a { 
-	background-color: #420b0b81;
+	background-color: #420b0b5b;
   color:rgb(255, 255, 255);
-  font-size: 30px;
+  font-size: 40px;
+  text-decoration: none;
+  display: block;
+  width: 800px;
 }
 .UsuarioRegistrado ul { 
   margin: 250px auto;
-	background-color: #420b0b5b;
-  width: 300px; 
+  width: 800px;
+  list-style-type: none;
+  padding: 0;
+}
+.UsuarioRegistrado li{
+  display: block;
+  width: 100px;
+}
+.UsuarioRegistrado li a:hover {
+  background-color: rgb(71, 13, 13);;
 }
 /* COMPARTIR RECETA*/
 .compartir_receta{
@@ -103,7 +131,6 @@ header {
 	font-weight: bold; 
 	color: #ffffff;
 }
-
 .compartir_receta h1{
   margin: 5px auto;
 	font-family: serif;
@@ -125,75 +152,98 @@ header {
 }
 /*COMPARTIR RECETA(INGRESO DE INGREDEINTES)*/
 .ingrediente{
+  margin: 200px auto;
+  margin-bottom: 0%;
+  width: center;
+  height: 120px;
   font-weight: bold; 
-  margin-top: 150px;
-  margin-right: 800px;
   color: rgb(56, 4, 0);
   background-color: #b6b6b66c;
-  text-align: center
-}
-.MostrarIngre{
-  width: 400px;
-  margin-left: 1000px;
   text-align: center;
-  text-align-last: center;
-  background-color: #b6b6b66c;
-  color: #1e1438;
-  font-weight:bolder; 
 }
-.MostrarIngre h3{
+.ingrediente td{
+  font-size: 20px;
+}
+.ingrediente table{
+  margin: 0px auto;
+}
+.ingrediente input{
+  border-radius: 4px;
+  border: 1px solid black;
+  font-size: 20px;
+  opacity: 0.9;
+  text-size-adjust: 10px;
+}
+/*CONSULTAR RANKING*/
+.consultar-ranking{
+  margin: 200px auto;
+  margin-bottom: 0%;
+  color:rgb(255, 255, 255); 
+  font-size: 18px;
+}
+.consultar-ranking hr{
+  width: 100px;
+}
+.consultar-ranking h3{
   font-weight:bold;
   color: rgb(56, 4, 0);
-  margin: 10px auto;
-  
+  font-size: 35px;
+  width: 400px;
+  margin: 20px auto;
+  text-align: center;
 }
-/**/
-p {
-	margin-left: 2em; 
-	color: #123A42;
+/*BUSCAR RECETA POR TIEMPO*/
+.consultar-tiempo{
+  margin: 220px auto;
+  width: 700px;
+  height: 150px;
+  text-align: center;
 }
-ul {
-  list-style-type: none;
-  margin-left: 2em; 
-  padding: 0;
-  width: 200px;
-
+.consultar-tiempo h3{
+  color: rgb(56, 4, 0);
+  font-weight: bold; 
+  font-size: 40px;
+  margin-bottom: 0%;
 }
-li a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #555;
-  color: white;
-}
-
-table, th, td {
+.consultar-tiempo input{
+  border-radius: 4px;
   border: 1px solid black;
-  border-collapse: collapse;
-  margin-left: 2em; 
+  font-size: 20px;
+  opacity: 0.9;
+  text-size-adjust: 10px;
+  text-align: center;
 }
+/* VER RECETA*/
+.ver-receta{
+  color: rgb(255, 255, 255);
+  margin: 200px auto;
+  width: 500px;
+  background-color: #b6b6b6b9;
+  text-align: center;
+}
+.ver-receta h1{
+  font-weight: bold; 
+  color: rgb(56, 4, 0);
+}
+.ver-receta a{
+  width: 200px;
+}
+.ver-receta hr{
+  width: 200px;
+}
+.ver-receta ul{
+  list-style-type: none;
+  margin: 20px;
+}
+.ver-receta li{
+  color: rgb(95, 11, 11);
+  background-color: #000000;
+  width: 200px;
+}
+
 th, td {
   padding: 5px;
 }
-.menu {
-  float: right;
-  margin-top: 8px;
-}
-.menu li {
-  display: inline;
-}
-.menu li + li {
-  margin-left: 35px;
-}
-.menu li a {
-  color: #444;
-  text-decoration: none;
-}
-
 .tabla .buttom{
   border: none;
   text-align: center;
@@ -201,19 +251,18 @@ th, td {
   margin: 0px auto;
   table-layout:fixed; width: 500px;
   border-collapse: separate; 
-  color: rgb(56, 4, 0);
+  color: rgb(255, 255, 255);
   border-inline-color: #6b58a463;
+  background-color: #420b0b7e;
 }
 .tabla .top{
-  
   text-align: center;
   table-layout:fixed;
   width: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
-  color: rgb(56, 4, 0);
-  
+  color: rgb(255, 255, 255);
+  background-color: #420b0bc2;
 }
 .tabla h3{
   font-weight:bold;
@@ -223,8 +272,10 @@ th, td {
   text-align: center;
 }
 .menuref{
-  
   text-align: center;
+}
+.menuref a{
+  color:rgb(255, 255, 255);
 }
 
 
